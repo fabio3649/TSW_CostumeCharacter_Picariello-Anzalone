@@ -16,6 +16,8 @@ public class ProductBean implements Serializable {
 	double weight;
 	String age;
 	int numberCopies;
+	int quantity;
+	String urlImage;
 	
 
 	public ProductBean() {
@@ -29,6 +31,16 @@ public class ProductBean implements Serializable {
 		weight = 0;
 		age = "";
 		numberCopies =0;
+		quantity=1;
+		urlImage="";
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 	public int getId() {
@@ -113,7 +125,14 @@ public class ProductBean implements Serializable {
 
 	public void setSize(String size)
 	{
-		size = size;
+		this.size = size;
+	}
+	public void setQuantity(int a) {
+		this.quantity=a;
+	}
+	
+	public int getQuantity() {
+		return this.quantity;
 	}
 	@Override
 	public String toString() {
@@ -123,4 +142,3 @@ public class ProductBean implements Serializable {
 	}
 
 }
-

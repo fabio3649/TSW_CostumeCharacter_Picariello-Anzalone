@@ -1,0 +1,81 @@
+table{
+	width: 600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+table, th, td{
+	border: 1px solid #000;
+	border-collapse: collapse;
+	padding:8px;
+	text-align:center;
+}
+th{
+	background-color: #546e7a;
+	color: white;
+}
+tr:nth-child(even){
+	background-color: #eceff1;
+}
+tr:nth-child(odd){
+	background-color: #cfd8dc;
+}
+body{
+	align:center;
+	font-family: sans-serif;
+}
+caption{
+	color:#263238;
+}
+.Available{
+	color:green;
+}
+.NotAvailable{
+	color:red;
+}
+#tableForms{
+	width:100px;
+	margin-right:10px;
+	border:none;
+}
+.button {
+  background-color: #546e7a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 17px;
+  margin: 1px 2px;
+  cursor: pointer;
+}
+.buttonBorder{
+	border:none;
+	background-color:white;
+}
+.buttonAdd{
+	background-color: #546e7a;
+	border: none;
+	color: white;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+#quantityUpdate1{
+	background-color: #546e7a;
+	padding: 2px 9px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+}
+#quantityUpdate2{
+	background-color: #546e7a;
+	padding: 2px 7px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+}
+#addedText{
+	border:none;
+	background-color:white;
+	color:green;
+}

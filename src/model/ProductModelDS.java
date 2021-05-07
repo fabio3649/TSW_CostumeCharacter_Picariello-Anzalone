@@ -38,7 +38,7 @@ public class ProductModelDS implements ProductModel {
 
 		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
 				+ " (IDPRODUCT, NAME, TYPE, DESCRIPTION, AGE, SIZE, NUMBER OF COPIES,"
-				+ " IVA, PRICE, WEIGHT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " IVA, PRICE, WEIGHT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = ds.getConnection();
@@ -53,7 +53,7 @@ public class ProductModelDS implements ProductModel {
 			preparedStatement.setInt(8, product.getIva());
 			preparedStatement.setDouble(9, product.getPrice());
 			preparedStatement.setDouble(10, product.getWeight());
-
+			preparedStatement.setString(11, product.getUrlImage());
 			preparedStatement.executeUpdate();
 
 			connection.commit();
@@ -95,6 +95,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setIva(rs.getInt("IVA"));
 				bean.setPrice(rs.getDouble("PRICE"));
 				bean.setWeight(rs.getDouble("WEIGHT"));
+				bean.setUrlImage(rs.getString("URLIMAGE"));
 			}
 
 		} finally {
@@ -169,6 +170,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setIva(rs.getInt("IVA"));
 				bean.setPrice(rs.getDouble("PRICE"));
 				bean.setWeight(rs.getDouble("WEIGHT"));
+				bean.setUrlImage(rs.getString("URLIMAGE"));
 				products.add(bean);
 			}
 

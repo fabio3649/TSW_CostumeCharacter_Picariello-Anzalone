@@ -1,0 +1,49 @@
+@charset "ISO-8859-1";
+
+body{font-family: Helvetica, Verdana, sans-serif; font-size: 20px;}
+
+.table{position: relative; bottom: 7em; float: right;  width: 600px;  }
+
+img { float: left;   width: 300px;  }
+
+p{ font-size: 18px;}
+ 
+#logo { float: center;  text-align: center;}
+
+#container { position: relative ; width: 90%; max-width: 960px; margin: 0 auto; padding: 90px;}
+
+#tableForms{
+    position: relative;
+    bottom: 10px;
+	width:100px;
+	margin-right:10px;
+	border: 90px;
+}
+
+#header { height: 7em;
+	background: #37474f ;
+	color: #fff;
+	padding-left: 1.5em;
+	position: relative; }
+ 
+ 
+#header img { height: 150px; width: 150px; }
+
+
+#buttonPos { float: right;   }
+ 
+.buttonADD {  cursor: pointer; color: white;  font-size: 17px; border:none; background-color: #546e7a; padding:10px; }
+
+.button {
+  background-color: #546e7a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 17px;
+  margin: 1px 2px;
+  cursor: pointer;
+}
+
+ 
+
+
