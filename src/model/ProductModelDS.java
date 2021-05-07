@@ -21,7 +21,7 @@ public class ProductModelDS implements ProductModel {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
-			ds = (DataSource) envCtx.lookup("jdbc/costumecharacter");
+			ds = (DataSource) envCtx.lookup("jdbc/costumecharacterds");
           
 		} catch (NamingException e) {
 			System.out.println("Error:" + e.getMessage());
