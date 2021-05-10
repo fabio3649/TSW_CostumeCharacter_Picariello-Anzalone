@@ -16,7 +16,7 @@ public class AddToCart extends HttpServlet {
     public AddToCart() {
         super();
     }
-    //prova2
+    //prova2 stiamo provando a committare entrambi
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int id = (Integer.parseInt(request.getParameter("id")));
