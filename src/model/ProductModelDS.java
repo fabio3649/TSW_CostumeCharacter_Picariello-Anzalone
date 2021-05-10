@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductModelDS implements ProductModel {
+public class ProductModelDS implements DaoModel {
 
 	private static DataSource ds;
     
@@ -31,11 +31,11 @@ public class ProductModelDS implements ProductModel {
 	private static final String TABLE_NAME = "product";
 
 	@Override
-	public synchronized void doSave(ProductBean product) throws SQLException {
+	public synchronized void doSave(Object bean) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		ProductBean product = (ProductBean) bean;
 		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
 				+ " (IDPRODUCT, NAME, TYPE, DESCRIPTION, AGE, SIZE, NUMBER OF COPIES,"
 				+ " IVA, PRICE, WEIGHT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -139,7 +139,7 @@ public class ProductModelDS implements ProductModel {
 	}
 
 	@Override
-	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
+	public synchronized Collection<?> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
