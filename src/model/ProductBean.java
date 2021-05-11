@@ -18,6 +18,7 @@ public class ProductBean implements Serializable {
 	int numberCopies;
 	int quantity;
 	String urlImage;
+	String category;
 	
 
 	public ProductBean() {
@@ -33,6 +34,7 @@ public class ProductBean implements Serializable {
 		numberCopies =0;
 		quantity=1;
 		urlImage="";
+		category="";
 	}
 
 	public String getUrlImage() {
@@ -133,6 +135,16 @@ public class ProductBean implements Serializable {
 	
 	public int getQuantity() {
 		return this.quantity;
+	}
+	
+	public String getCategory()
+	{
+		return this.category;
+	}
+	
+	public void setCategory(String category)
+	{
+		this.category = category;
 	}
 	@Override
 	public String toString() {

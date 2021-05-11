@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductModelDS implements DaoModel {
+public class CategoryModelDS implements DaoModel {
 
 	private static DataSource ds;
     
@@ -28,35 +28,23 @@ public class ProductModelDS implements DaoModel {
 		}
 	}
                                     
-	private static final String TABLE_NAME = "product";
-
-	@Override
+	private static final String TABLE_NAME = "category";
+	
 	public synchronized void doSave(Object bean) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		ProductBean product = (ProductBean) bean;
-		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-				+ " (IDPRODUCT, NAME, TYPE, DESCRIPTION, AGE, SIZE, NUMBER OF COPIES,"
-				+ " IVA, PRICE, WEIGHT, URLIMAGE, CATEGORY) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		CategoryBean category = (CategoryBean) bean;
+		String insertSQL = "INSERT INTO " + CategoryModelDS.TABLE_NAME
+				+ " (IDCLASS, NAME, DESCRIPTION) VALUES (?, ?, ?)";
+		
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, product.getId());
-			preparedStatement.setString(2, product.getName());
-			preparedStatement.setString(3, product.getType());
-			preparedStatement.setString(4, product.getDescription());
-			preparedStatement.setString(5, product.getAge());
-			preparedStatement.setString(6, product.getSize());
-			preparedStatement.setInt(7, product.getNumCopies());
-			preparedStatement.setInt(8, product.getIva());
-			preparedStatement.setDouble(9, product.getPrice());
-			preparedStatement.setDouble(10, product.getWeight());
-			preparedStatement.setString(11, product.getUrlImage());
-			preparedStatement.setString(12,product.getCategory());
-			preparedStatement.executeUpdate();
-
+			preparedStatement.setString(1, category.getIdClass());
+			preparedStatement.setString(2, category.getName());
+			preparedStatement.setString(3, category.getDescription());
+			
 			connection.commit();
 		} finally {
 			try {
@@ -68,36 +56,28 @@ public class ProductModelDS implements DaoModel {
 			}
 		}
 	}
-
-	@Override
-	public synchronized ProductBean doRetrieveByKey(int idProduct) throws SQLException {
+	
+	public synchronized CategoryBean doRetrieveByKey(int idClass) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		ProductBean bean = new ProductBean();
+		String id = String.valueOf(idClass);
+		
+		CategoryBean bean = new CategoryBean();
 
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE IDPRODUCT = ?";
+		String selectSQL = "SELECT * FROM " + CategoryModelDS.TABLE_NAME + " WHERE IDCLASS = ?";
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, idProduct);
+			preparedStatement.setString(1, id);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setId(rs.getInt("IDPRODUCT"));
+				bean.setIdClass(rs.getString("IDCLASS"));
 				bean.setName(rs.getString("NAME"));
-				bean.setType(rs.getString("TYPE"));
 				bean.setDescription(rs.getString("DESCRIPTION"));
-				bean.setAge(rs.getString("AGE"));
-				bean.setSize(rs.getString("SIZE"));
-				bean.setNumCopies(rs.getInt("NUMBERCOPIES"));
-				bean.setIva(rs.getInt("IVA"));
-				bean.setPrice(rs.getDouble("PRICE"));
-				bean.setWeight(rs.getDouble("WEIGHT"));
-				bean.setUrlImage(rs.getString("URLIMAGE"));
-				bean.setCategory(rs.getString("CATEGORY"));
 			}
 
 		} finally {
@@ -111,20 +91,22 @@ public class ProductModelDS implements DaoModel {
 		}
 		return bean;
 	}
-
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
+	
+	
+	public synchronized boolean doDelete(int idClass) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		
+		String id = String.valueOf(idClass);
+         
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE ID = ?";
+		String deleteSQL = "DELETE FROM " + CategoryModelDS.TABLE_NAME + " WHERE IDCLASS = ?";
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 
 			result = preparedStatement.executeUpdate();
 
@@ -139,15 +121,14 @@ public class ProductModelDS implements DaoModel {
 		}
 		return (result != 0);
 	}
-
-	@Override
+	
 	public synchronized Collection<?> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<CategoryBean> categories = new LinkedList<CategoryBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + CategoryModelDS.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -160,21 +141,13 @@ public class ProductModelDS implements DaoModel {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				ProductBean bean = new ProductBean();
+				CategoryBean bean = new CategoryBean();
 
-				bean.setId(rs.getInt("IDPRODUCT"));
+				bean.setIdClass(rs.getString("IDCLASS"));
 				bean.setName(rs.getString("NAME"));
-				bean.setType(rs.getString("TYPE"));
 				bean.setDescription(rs.getString("DESCRIPTION"));
-				bean.setAge(rs.getString("AGE"));
-				bean.setSize(rs.getString("SIZE"));
-				bean.setNumCopies(rs.getInt("NUMBERCOPIES"));
-				bean.setIva(rs.getInt("IVA"));
-				bean.setPrice(rs.getDouble("PRICE"));
-				bean.setWeight(rs.getDouble("WEIGHT"));
-				bean.setUrlImage(rs.getString("URLIMAGE"));
-				bean.setCategory(rs.getString("CATEGORY"));
-				products.add(bean);
+				
+				categories.add(bean);
 			}
 
 		} finally {
@@ -186,7 +159,12 @@ public class ProductModelDS implements DaoModel {
 					connection.close();
 			}
 		}
-		return products;
+		return categories;
 	}
 
 }
+	
+			
+	
+
+

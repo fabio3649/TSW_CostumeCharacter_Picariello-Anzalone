@@ -43,9 +43,10 @@
 	  		
 		
 	 <div id="container">
-    
+        
+         
 	 	<img  src= <%=bean.getUrlImage() %> alt="image"  >
-      
+        
 		<br><br><br><br><br><br>
 
           <table  class="table">
