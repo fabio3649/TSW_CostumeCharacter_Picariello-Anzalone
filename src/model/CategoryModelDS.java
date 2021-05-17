@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class CategoryModelDS implements DaoModel {
+public class CategoryModelDS  {
 
 	private static DataSource ds;
     
@@ -44,7 +44,7 @@ public class CategoryModelDS implements DaoModel {
 			preparedStatement.setString(1, category.getIdClass());
 			preparedStatement.setString(2, category.getName());
 			preparedStatement.setString(3, category.getDescription());
-			
+			connection.setAutoCommit(false);
 			connection.commit();
 		} finally {
 			try {
@@ -57,11 +57,11 @@ public class CategoryModelDS implements DaoModel {
 		}
 	}
 	
-	public synchronized CategoryBean doRetrieveByKey(int idClass) throws SQLException {
+	public synchronized CategoryBean doRetrieveByKey(String idClass) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String id = String.valueOf(idClass);
+	
 		
 		CategoryBean bean = new CategoryBean();
 
@@ -70,7 +70,7 @@ public class CategoryModelDS implements DaoModel {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, id);
+			preparedStatement.setString(1, idClass);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -93,11 +93,11 @@ public class CategoryModelDS implements DaoModel {
 	}
 	
 	
-	public synchronized boolean doDelete(int idClass) throws SQLException {
+	public synchronized boolean doDelete(String idClass) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String id = String.valueOf(idClass);
+		
          
 		int result = 0;
 
@@ -106,7 +106,7 @@ public class CategoryModelDS implements DaoModel {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setString(1, id);
+			preparedStatement.setString(1, idClass);
 
 			result = preparedStatement.executeUpdate();
 

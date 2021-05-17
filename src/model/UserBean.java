@@ -10,7 +10,7 @@ public class UserBean implements Serializable {
 	String password;
 	String name;
 	String surname;
-	int telephoneNumber;
+	String telephoneNumber;
 	String email;
 	String billingAddress;
 	int billingCAP;
@@ -23,7 +23,7 @@ public class UserBean implements Serializable {
 		password="";
 		name="";
 		surname="";
-		telephoneNumber=0;
+		telephoneNumber="";
 		email="";
 		billingAddress="";
 		billingCAP=0;
@@ -65,11 +65,11 @@ public class UserBean implements Serializable {
 		this.surname = surname;
 	}
 
-	public int getTelephoneNumber() {
+	public String getTelephoneNumber() {
 		return telephoneNumber;
 	}
 
-	public void setTelephoneNumber(int telephoneNumber) {
+	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
 

@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class UserModelDS implements DaoModel {
+public class UserModelDS  {
 	
 private static DataSource ds;
     
@@ -30,7 +30,7 @@ private static DataSource ds;
                                     
 	private static final String TABLE_NAME = "user";
 
-	@Override
+	
 	public void doSave(Object bean) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -46,13 +46,14 @@ private static DataSource ds;
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getName());
 			preparedStatement.setString(4, user.getSurname());
-			preparedStatement.setInt(5, user.getTelephoneNumber());
+			preparedStatement.setString(5, user.getTelephoneNumber());
 			preparedStatement.setString(6, user.getEmail());
 			preparedStatement.setString(7, user.getBillingAddress());
 			preparedStatement.setInt(8, user.getBillingCAP());
-			preparedStatement.setString(8, user.getBillingCity());
-			preparedStatement.setString(8, user.getBillingProvince());
-			
+			preparedStatement.setString(9, user.getBillingCity());
+			preparedStatement.setString(10, user.getBillingProvince());
+			preparedStatement.executeUpdate();
+			connection.setAutoCommit(false);
 			connection.commit();
 		} finally {
 			try {
@@ -67,12 +68,12 @@ private static DataSource ds;
 		
 	
 
-	@Override
-	public boolean doDelete(int username) throws SQLException {
+	
+	public boolean doDelete(String username) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String user = String.valueOf(username);
+	
          
 		int result = 0;
 
@@ -81,7 +82,7 @@ private static DataSource ds;
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setString(1, user);
+			preparedStatement.setString(1, username);
 
 			result = preparedStatement.executeUpdate();
 
@@ -98,12 +99,12 @@ private static DataSource ds;
 	}
 	
 
-	@Override
-	public Object doRetrieveByKey(int username) throws SQLException {
+	
+	public Object doRetrieveByKey(String username) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String user = String.valueOf(username);
+		
 		
 		UserBean bean = new UserBean();
         
@@ -112,7 +113,7 @@ private static DataSource ds;
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, user);
+			preparedStatement.setString(1, username);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -121,7 +122,7 @@ private static DataSource ds;
 				bean.setPassword(rs.getString("PASSWORD"));
 				bean.setName(rs.getString("NAME"));
 				bean.setSurname(rs.getString("SURNAME"));
-			    bean.setTelephoneNumber(rs.getInt("TELEPHONENUMBER"));
+			    bean.setTelephoneNumber(rs.getString("TELEPHONENUMBER"));
 	            bean.setEmail(rs.getString("EMAIL"));
 	            bean.setBillingAddress(rs.getString("BILLINGADDRESS"));
 	            bean.setBillingCAP(rs.getInt("BILLINGCAP"));
@@ -143,7 +144,7 @@ private static DataSource ds;
 	}
 	
 
-	@Override
+	
 	public Collection<?> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -170,7 +171,7 @@ private static DataSource ds;
 				bean.setPassword(rs.getString("PASSWORD"));
 				bean.setName(rs.getString("NAME"));
 				bean.setSurname(rs.getString("SURNAME"));
-			    bean.setTelephoneNumber(rs.getInt("TELEPHONENUMBER"));
+			    bean.setTelephoneNumber(rs.getString("TELEPHONENUMBER"));
 	            bean.setEmail(rs.getString("EMAIL"));
 	            bean.setBillingAddress(rs.getString("BILLINGADDRESS"));
 	            bean.setBillingCAP(rs.getInt("BILLINGCAP"));

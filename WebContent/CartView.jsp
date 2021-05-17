@@ -58,14 +58,12 @@
 		</table>
 		<br><br><br>
 		<%
-			double total=0;
+			double total= cart.getTotal();
 			double temp = Math.pow(10, 2);
-			for(int i=0;i<cart.getProducts().size();i++){
-				total +=(cart.getProducts().get(i).getPrice()*cart.getProducts().get(i).getQuantity());
-			}
+			
 			total = Math.rint(total * temp) / temp;
 		%>
-		<h2>Total Price : <%=total %>0 $</h2>
+		<h2>Total Price : <%=total %> $</h2>
 		<a href="CheckOut.jsp"><button class="button" >Go to checkout</button></a>
 		
 	<%

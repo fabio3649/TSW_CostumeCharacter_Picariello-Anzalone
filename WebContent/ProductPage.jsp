@@ -45,7 +45,7 @@
 	 <div id="container">
         
          
-	 	<img  src= <%=bean.getUrlImage() %> alt="image"  >
+	 	
         
 		<br><br><br><br><br><br>
 
@@ -58,7 +58,7 @@
                <tr> <td> <p> <%= bean.getSize() %> </p>  </td>  </tr> 
                <%} %>
                <tr>  <td> <h3>  Price  </h3> </td> </tr>
-               <tr>  <td> <p>  <%= bean.getPrice() %>0 $  </p> </td>  </tr>   			
+               <tr>  <td> <p>  <%= bean.getPrice() %>$  </p> </td>  </tr>   			
 		</table>	
 	</div>
 </body>

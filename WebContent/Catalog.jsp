@@ -11,7 +11,7 @@
 
 	<%
 	 	ProductModelDS daoProdotto= new ProductModelDS();
-		Collection<?> products = (Collection<?>) daoProdotto.doRetrieveAll("idProduct");
+		ArrayList<ProductBean> products =  daoProdotto.doRetrieveAll("type");
 	 	Iterator<?> it = products.iterator();
 	%>
 	<body>

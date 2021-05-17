@@ -11,13 +11,13 @@ public class ProductBean implements Serializable {
 	String type;
 	String description;
 	double price;
+	double totalPrice;
 	String size;
 	int iva;
 	double weight;
 	String age;
 	int numberCopies;
 	int quantity;
-	String urlImage;
 	String category;
 	
 
@@ -29,21 +29,14 @@ public class ProductBean implements Serializable {
 		price = 0;
 		size ="";
 		iva = 22;
+		totalPrice=0;
 		weight = 0;
 		age = "";
 		numberCopies =0;
 		quantity=1;
-		urlImage="";
 		category="";
 	}
 
-	public String getUrlImage() {
-		return urlImage;
-	}
-
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
 
 	public int getId() {
 		return idProduct;
@@ -146,6 +139,18 @@ public class ProductBean implements Serializable {
 	{
 		this.category = category;
 	}
+	
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+    // totalPrice contiene il prezzo Ivato;
+	public void setTotalPrice() {
+		double priceIva = (this.getPrice()) * (this.getIva() / 100 );
+		this.totalPrice = this.getPrice() + priceIva ;
+	}
+
+
 	@Override
 	public String toString() {
 		return "[ " + name + "," + type +  "," +  idProduct + "," +  price + "," + iva + "," + description + "," + size + ","

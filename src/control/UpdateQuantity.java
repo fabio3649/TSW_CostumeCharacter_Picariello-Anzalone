@@ -25,15 +25,14 @@ public class UpdateQuantity extends HttpServlet {
 		if(request.getParameter("method").equals("plus")) {
 			Cart cart = (Cart)request.getSession().getAttribute("cart");
 			ProductBean bean = cart.getProduct(Integer.parseInt(request.getParameter("id")));
-			bean.setQuantity(bean.getQuantity()+1);
+			//bean.setQuantity(bean.getQuantity()+1);
+			cart.addProduct(bean);
 			response.sendRedirect("CartView.jsp");
 		}
 		if(request.getParameter("method").equals("less")) {
 			Cart cart = (Cart)request.getSession().getAttribute("cart");
 			ProductBean bean = cart.getProduct(Integer.parseInt(request.getParameter("id")));
-			bean.setQuantity(bean.getQuantity()-1);
-				if(bean.getQuantity()<1)
-					cart.deleteProduct(bean);
+			cart.deleteProduct(bean);
 			response.sendRedirect("CartView.jsp");
 		}
 		
