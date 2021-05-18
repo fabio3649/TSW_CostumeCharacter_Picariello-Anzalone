@@ -16,50 +16,45 @@ import model.*;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		try{
-			UserModelDS daoUser = new UserModelDS();
-			UserBean user = (UserBean) daoUser.doRetrieveByKey(username);
-			if(user != null){		
-	           if(user.getPassword().equals(password)) {
-	        	   request.getSession(true).setAttribute("user", user);
-	        	   response.sendRedirect("Test.jsp");
-	           }
-	           else {
-	        	   response.sendRedirect("UserLogin.jsp");
-	           }
-			}
-		}catch(Exception e){
-			 System.out.println(e);
-	
-		}
-	   
 		
-	
+		if(CheckLogin.ceckLogin(username,password)) {
+			
+			//setta Validation a true se l'utente è validato
+			request.getSession().setAttribute("validation", true);
+			
+			//setta parametro dell'utente corrente tramite username
+			request.getSession().setAttribute("currentUser", username);
+			
+			//setta parametro dell'ruolo (role) con Admistrator || User
+			if(CheckLogin.ceckAdministartor(username, password))
+				request.getSession().setAttribute("role", "Administrator");
+			else
+				request.getSession().setAttribute("role", "User");
+			
+			response.sendRedirect("Catalog.jsp");
+		}
+		else {
+			request.getSession().setAttribute("validation", false);
+			response.sendRedirect("Login.jsp");
+		}
 	}
-	
 }
