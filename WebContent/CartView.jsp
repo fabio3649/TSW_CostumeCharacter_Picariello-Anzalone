@@ -64,11 +64,13 @@
 			total = Math.rint(total * temp) / temp;
 		%>
 		<h2>Total Price : <%=total %> $</h2>
-		<a href="MakeOrder.jsp"><button class="button" > Make Order </button></a>
+		
+		<a href="Login.jsp"><button class="button" > Go to checkout </button></a>
 		
 	<%
 	
 	}else{
+		
 		%>
 		<h1 align="center">The Cart is Empty :(</h1>
 		<%

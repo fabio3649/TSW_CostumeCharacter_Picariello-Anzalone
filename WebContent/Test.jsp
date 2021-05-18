@@ -13,7 +13,7 @@
 
   ProductModelDS dao = new ProductModelDS();
   ImageModelDS daoImg = new ImageModelDS();
-  ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(5);
+  ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(6);
  
   %>
    
