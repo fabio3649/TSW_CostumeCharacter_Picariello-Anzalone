@@ -16,7 +16,8 @@
  <% int id =  Integer.parseInt(request.getParameter("id"));
    ProductModelDS dao = new ProductModelDS();
    ProductBean bean = dao.doRetrieveByKey(id);
-   
+   ImageModelDS daoImg = new ImageModelDS();
+   ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(id);
 	   %>
 	   
    <div id="header">
@@ -49,6 +50,18 @@
         
 		<br><br><br><br><br><br>
 
+		<% 
+	  for(int i=0; i < imgIronMan.size() ;i++)
+	  {
+		  %>
+		  
+		 		<img src= "<%=imgIronMan.get(i).getUrl()%>"  alt="img" >
+		 		<%
+	  }
+		  
+		  		%>
+		  %>
+		
           <table  class="table">
                <tr> <td> <h1> <%=bean.getName() %> </h1> </td> <td > <a href="AddToCart?id=<%=bean.getId()%>"> <button class="buttonADD" >ADD TO CART </button> </a> </td> </tr>
                <tr> <td> <h3> Details  </h3>  </td>  </tr>              	 

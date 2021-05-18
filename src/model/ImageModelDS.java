@@ -63,59 +63,23 @@ private static DataSource ds;
 		}
 	}
 	
-	public synchronized ImageBean doRetrieveByUrl(String url) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		ImageBean bean = new ImageBean();
-
-
-		String selectSQL = "SELECT * FROM " + ImageModelDS.TABLE_NAME + " WHERE URL = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, url);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				bean.setUrl(rs.getString("URL"));
-				bean.setProduct(rs.getInt("PRODUCT"));
-				
-				int main = rs.getInt("MAIN");
-				if(main == 0)
-					bean.setMain(false);
-				else
-					bean.setMain(true);
-					
-				}
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return bean;
-	}
 	
-	public synchronized ArrayList<ImageBean> doRetrieveAll() throws SQLException {
+	
+	public synchronized ArrayList<ImageBean> doRetrieveAllByProduct(int id ) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		ArrayList<ImageBean> images = new ArrayList<ImageBean>();
 
-		String selectSQL = "SELECT * FROM " + ImageModelDS.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + ImageModelDS.TABLE_NAME + " WHERE PRODUCT = ?"; 
 
 		
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-
+			preparedStatement.setInt(1, id);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {

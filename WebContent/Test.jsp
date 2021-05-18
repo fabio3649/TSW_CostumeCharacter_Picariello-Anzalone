@@ -12,13 +12,22 @@
   
 
   ProductModelDS dao = new ProductModelDS();
-
- 
+  ImageModelDS daoImg = new ImageModelDS();
+  ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(5);
  
   %>
    
-  
-<%=  %>
-
+  <% 
+  for(int i=0; i < imgIronMan.size() ;i++)
+  {
+	  %>
+	  
+	 		<img src ="<%=imgIronMan.get(i).getUrl()%>" alt="image" height="300px" width="300px" > <br> <br>
+	 		<%
+  }
+	  
+	  		%>
+	
+	  
 </body>
 </html>

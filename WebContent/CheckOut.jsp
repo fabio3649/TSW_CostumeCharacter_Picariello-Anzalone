@@ -11,7 +11,7 @@
 	<table id="tableForms">
     	<tr class="buttonBorder">
         	<td class="buttonBorder">
-           	 	<form action="CartView.jsp" method="post">
+           	 	<form action="MakeOrder.jsp" method="post">
     				<input class="button" type="submit" value="Cart">
 		  		</form>
 		  		

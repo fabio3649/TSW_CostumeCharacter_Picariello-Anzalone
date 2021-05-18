@@ -48,6 +48,13 @@ public class ImageBean implements Serializable {
 	public void setMain(boolean main) {
 		this.main = main;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ImageBean [url=" + url + ", product=" + product + ", main=" + main + "]";
+	}
+	
 	
 	
 

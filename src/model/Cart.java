@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Cart {
 
-	private List<ProductBean> products;
+	private ArrayList<ProductBean> products;
 	private double total;
 	
 	public Cart() {
@@ -93,7 +93,7 @@ public class Cart {
 		return false;
 	}
 	
-	public List<ProductBean> getProducts() {
+	public ArrayList<ProductBean> getProducts() {
 		return  products;
 	}
 }
