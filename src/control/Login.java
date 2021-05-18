@@ -16,7 +16,6 @@ import model.*;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    //prova Fabio
     public Login() {
         super();
         // TODO Auto-generated constructor stub
@@ -38,8 +37,8 @@ public class Login extends HttpServlet {
 		
 		if(CheckLogin.ceckLogin(username,password)) {
 			
-			//setta Validation a true se l'utente è validato
-			request.getSession().setAttribute("validation", true);
+			//setta validation a true se l'utente è validato
+			request.getSession().setAttribute("validation", "true");
 			
 			//setta parametro dell'utente corrente tramite username
 			request.getSession().setAttribute("currentUser", username);
@@ -53,7 +52,7 @@ public class Login extends HttpServlet {
 			response.sendRedirect("Catalog.jsp");
 		}
 		else {
-			request.getSession().setAttribute("validation", false);
+			request.getSession().setAttribute("validation", "false");
 			response.sendRedirect("Login.jsp");
 		}
 	}
