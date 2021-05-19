@@ -22,7 +22,6 @@ public class AddToCart extends HttpServlet {
 		int id = (Integer.parseInt(request.getParameter("id")));
 		ProductModelDS ds = new ProductModelDS();
 		
-		
 		try{
 			if(ds.doRetrieveByKey(id).getNumCopies()>0) {
 				if(request.getSession().getAttribute("cart")==null) {
@@ -38,10 +37,9 @@ public class AddToCart extends HttpServlet {
 			} else {
 				response.sendRedirect("Catalog.jsp?notAvailable=true");
 			}
-			
 		}
-		
 		catch(Exception e){	
+			System.out.println(e);
 		}
 		
 		
