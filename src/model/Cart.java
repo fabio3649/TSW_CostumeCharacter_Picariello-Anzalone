@@ -20,16 +20,16 @@ public class Cart {
 		else {
 			products.add(product);
 		}
-	}
+	} 
 	
 	public void deleteProduct(ProductBean product) {
 		ProductBean bean = this.getProduct(product.getId());
-				if(bean.getQuantity()<2) {
-					products.remove(bean);
-				}
-				else {
-					bean.setQuantity(bean.getQuantity()-1);
-				}
+			if(bean.getQuantity()<2) {
+				products.remove(bean);
+			}
+			else {
+				bean.setQuantity(bean.getQuantity()-1);
+			}
  	}
 	
 	public boolean isContain(ProductBean bean) {
