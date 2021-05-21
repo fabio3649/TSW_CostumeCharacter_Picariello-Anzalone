@@ -105,7 +105,10 @@ public class AddressBean implements Serializable {
 				+ ", province=" + province + ", user=" + user + ", visible=" + visible + "]";
 	}
 	
-	
+	public String toStringReduce() {
+		
+		return address + " " + city + " " + province + " " +  cap ;
+	}
 	
 	
 	

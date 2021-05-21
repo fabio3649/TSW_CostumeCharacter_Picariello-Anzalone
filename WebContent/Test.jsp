@@ -8,26 +8,16 @@
 </head>
 <body>
 
-  <% 
+  <%
   
-
-  ProductModelDS dao = new ProductModelDS();
-  ImageModelDS daoImg = new ImageModelDS();
-  ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(6);
- 
+  AddressModelDS dao = new AddressModelDS();
+  AddressBean bean = dao.doRetrieveMinByUser("pippobaudo2");
+  
+  
+  
   %>
-   
-  <% 
-  for(int i=0; i < imgIronMan.size() ;i++)
-  {
-	  %>
-	  
-	 		<img src ="<%=imgIronMan.get(i).getUrl()%>" alt="image" height="300px" width="300px" > <br> <br>
-	 		<%
-  }
-	  
-	  		%>
-	
+  
+	<%= bean %>
 	  
 </body>
 </html>

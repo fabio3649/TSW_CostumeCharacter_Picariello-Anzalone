@@ -86,7 +86,7 @@ private static DataSource ds;
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, idAddress);
-
+			System.out.println(preparedStatement.toString());
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -114,6 +114,22 @@ private static DataSource ds;
 			}
 		}
 		return bean;
+	}
+	
+	public synchronized AddressBean doRetrieveMinByUser(String username) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		
+		ArrayList<AddressBean> list = this.doRetrieveAll();
+		for(AddressBean bean : list) {
+			if(bean.getUser().equals(username))
+				return bean;
+			
+			
+		}
+		return null;
+		
 	}
 
 	
@@ -245,7 +261,7 @@ private static DataSource ds;
 	
 	}
 	
-
+		
 
 		
 

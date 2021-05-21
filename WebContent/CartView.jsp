@@ -20,6 +20,18 @@
     				<input class="button"type="submit" value="Catalog">
 		  		</form>
         	</td>
+        	<td class="buttonBorder">
+           	 	<form action="Login.jsp" method="post">
+    				<input class="button" type="submit" value="Login">
+		  		</form>
+		  		
+        	</td>
+        	<td class="buttonBorder">
+           	 	<form action="Register.jsp" method="post">
+    				<input class="button" type="submit" value="Register">
+		  		</form>
+		  		
+        	</td>
     	</tr>
 	</table>
 

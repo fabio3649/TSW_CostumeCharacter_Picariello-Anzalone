@@ -35,6 +35,8 @@ private static DataSource ds;
 	public int nextId() throws SQLException {
 		
 		ArrayList<OrderBean> orders = this.doRetrieveAll();
+		if(orders.size()==0)
+			return 1;
 		int next = (orders.get(orders.size()-1).getIdOrder())+1;
 		
 		return next;
@@ -60,7 +62,9 @@ private static DataSource ds;
 			preparedStatement.setDouble(6, order.getShippingCosts());
 			preparedStatement.setString(7,order.getUser());
 			preparedStatement.setInt(8, order.getAddress());
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
+			
 			connection.setAutoCommit(false);
 			connection.commit();
 		} finally {

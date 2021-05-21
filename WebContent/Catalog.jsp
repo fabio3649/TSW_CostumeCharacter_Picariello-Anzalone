@@ -33,6 +33,18 @@
     				<input class="button" type="submit" value="Catalog">
 		  		</form>
         	</td>
+        	<td class="buttonBorder">
+           	 	<form action="Login.jsp" method="post">
+    				<input class="button" type="submit" value="Login">
+		  		</form>
+		  		
+        	</td>
+        	<td class="buttonBorder">
+           	 	<form action="Register.jsp" method="post">
+    				<input class="button" type="submit" value="Register">
+		  		</form>
+		  		
+        	</td>
     	</tr>
 	</table>
 		<table>
@@ -62,7 +74,7 @@
 				<%}else{ %>
 					<td class="Available">Available</td>
 				<% } %>
-				<td><%=bean.getPrice()+"0$"%></td>
+				<td><%=bean.getPrice()+"$"%></td>
 				<td style=min-width:100px> <a href="AddToCart?id=<%=bean.getId()%>"><button class="buttonAdd">ADD</button></a> <%if(added){%><br><label style=color:green>added to cart</label><%} %></td>
 				
 			</tr>

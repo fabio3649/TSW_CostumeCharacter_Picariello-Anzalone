@@ -33,6 +33,8 @@ private static DataSource ds;
 		public int nextId() throws SQLException {
 				
 				ArrayList<RefOrderBean> reforders = this.doRetrieveAll();
+				if(reforders.size()==0)
+					return 1;
 				int next = (reforders.get(reforders.size()-1).getOrder())+1;
 				
 				return next;
@@ -50,11 +52,12 @@ private static DataSource ds;
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, this.nextId());
+			preparedStatement.setInt(1,reforder.getOrder());
 			preparedStatement.setInt(2, reforder.getProduct());
 			preparedStatement.setInt(3, reforder.getQuantity());
 			preparedStatement.setDouble(4, reforder.getSellingPrice());
 			preparedStatement.setInt(5, reforder.getIva());
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.setAutoCommit(false);
 			connection.commit();

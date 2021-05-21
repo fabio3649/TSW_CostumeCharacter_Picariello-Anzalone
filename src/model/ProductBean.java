@@ -86,7 +86,11 @@ public class ProductBean implements Serializable {
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		double temp = Math.pow(10, 2);
+		double iva = (this.getIva() * (price)) / 100 ;
+		this.price = Math.rint((price + iva) * temp) / temp;
+		
+		
 	}
 	
 	public double getWeight() {
