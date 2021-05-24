@@ -35,7 +35,11 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(CheckLogin.ceckLogin(username,password)) {
+		if(CheckLogin.ceckAdministartor(username, password)) {
+			request.getSession().setAttribute("role", "Administrator");
+			response.sendRedirect("");
+		}
+		else if(CheckLogin.ceckLogin(username,password)) {
 			
 			//setta validation a true se l'utente è validato
 			request.getSession().setAttribute("validation", "true");
@@ -44,11 +48,7 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("currentUser", username);
 			
 			//setta parametro dell'ruolo (role) con Admistrator || User
-			if(CheckLogin.ceckAdministartor(username, password))
-				request.getSession().setAttribute("role", "Administrator");
-			else
-				request.getSession().setAttribute("role", "User");
-			
+			request.getSession().setAttribute("role", "User");
 			response.sendRedirect("Catalog.jsp");
 		}
 		else {

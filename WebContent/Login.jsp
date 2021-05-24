@@ -56,6 +56,6 @@
 	%>
 		<br><br>
 	
-	<a href="Register.jsp"><button>Register</button></a>
+	<p>Se non sei ancora registrato nel nostro sito clicca <a href="Register.jsp">qui</button></a></p>
 </body>
 </html>
