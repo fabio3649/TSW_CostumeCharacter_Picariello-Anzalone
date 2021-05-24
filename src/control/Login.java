@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 			
 			//setta parametro dell'ruolo (role) con Admistrator || User
 			request.getSession().setAttribute("role", "User");
-			response.sendRedirect("Catalog.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		else {
 			request.getSession().setAttribute("validation", "false");

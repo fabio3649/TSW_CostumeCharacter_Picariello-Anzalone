@@ -8,32 +8,7 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	<table id="tableForms">
-    	<tr class="buttonBorder">
-        	<td class="buttonBorder">
-           	 	<form action="CartView.jsp"method="post">
-    				<input class="button"type="submit" value="Cart">
-		  		</form>
-        	</td>
-        	<td class="buttonBorder">
-             	<form action="Catalog.jsp"method="post">
-    				<input class="button"type="submit" value="Catalog">
-		  		</form>
-        	</td>
-        	<td class="buttonBorder">
-           	 	<form action="Login.jsp" method="post">
-    				<input class="button" type="submit" value="Login">
-		  		</form>
-		  		
-        	</td>
-        	<td class="buttonBorder">
-           	 	<form action="Register.jsp" method="post">
-    				<input class="button" type="submit" value="Register">
-		  		</form>
-		  		
-        	</td>
-    	</tr>
-	</table>
+	<%@ include file="header.html" %>
 
 	<%
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -88,7 +63,7 @@
 		<%
 	}
 	%>	
-	
+	<%@ include file="footer.html" %>
 	
 </body>
 </html>

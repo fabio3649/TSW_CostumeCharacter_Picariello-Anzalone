@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+.centered {
+	text-align: center;
+	
+}
+
+
+
 section#spedizione {
     clear: both;
     position: relative;
@@ -107,7 +114,12 @@ header{
 
 
 
-footer {
+#footer {
+	
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
     background-color: #455a64;
     clear:both;
     width: 100%;
@@ -141,8 +153,8 @@ footer {
       color: white;
 
     }
-
-
+    
+  
 
     .payment a{
       text-decoration: none;
