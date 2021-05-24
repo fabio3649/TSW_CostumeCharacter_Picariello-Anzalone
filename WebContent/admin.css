@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family:  Helvetica, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.vertical-menu {
+    width: 200px;
+    z-index: 1000; 
+}
+
+.vertical-menu a {
+    background-color: #eee; 
+    color: black; 
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; 
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.view { }

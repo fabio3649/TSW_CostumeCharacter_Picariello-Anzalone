@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 		
 		if(CheckLogin.ceckAdministartor(username, password)) {
 			request.getSession().setAttribute("role", "Administrator");
-			response.sendRedirect("");
+			response.sendRedirect("Admin.jsp");
 		}
 		else if(CheckLogin.ceckLogin(username,password)) {
 			
