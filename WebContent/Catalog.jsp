@@ -15,45 +15,15 @@
 	 	Iterator<?> it = products.iterator();
 	%>
 	<body>
-		<% if(request.getParameter("notAvailable")!=null){%>
-		<script>
- 			 alert("We're sorry, but the selected product has no copies available");
-		</script>
-		<%} %>
-		<table id="tableForms">
-    	<tr class="buttonBorder">
-        	<td class="buttonBorder">
-           	 	<form action="CartView.jsp" method="post">
-    				<input class="button" type="submit" value="Cart">
-		  		</form>
-		  		
-        	</td>
-        	<td class="buttonBorder">
-             	<form action="Catalog.jsp"method="post">
-    				<input class="button" type="submit" value="Catalog">
-		  		</form>
-        	</td>
-        	<td class="buttonBorder">
-           	 	<form action="Login.jsp" method="post">
-    				<input class="button" type="submit" value="Login">
-		  		</form>
-		  		
-        	</td>
-        	<td class="buttonBorder">
-           	 	<form action="Register.jsp" method="post">
-    				<input class="button" type="submit" value="Register">
-		  		</form>
-		  		
-        	</td>
-    	</tr>
-	</table>
 		<table>
 			<caption><h1>CATALOG</h1></caption>
 			<tr>
 				<th>Name</th>
 				<th>Availability</th>
 				<th>Price</th>
-				<th>Add to Cart</th>
+				<th>Number of Copies</th>
+				<th>Size</th>
+				<th>Edit Product</th>
 			</tr>
 			<%  
 				while (it.hasNext()) {
@@ -75,7 +45,9 @@
 					<td class="Available">Available</td>
 				<% } %>
 				<td><%=bean.getPrice()+"$"%></td>
-				<td style=min-width:100px> <a href="AddToCart?id=<%=bean.getId()%>"><button class="buttonAdd">ADD</button></a> <%if(added){%><br><label style=color:green>added to cart</label><%} %></td>
+				<td><%=bean.getNumCopies() %></td>
+				<td style=width:80px><%=bean.getSize() %></td>
+				<td> <a href="editProduct?id=<%=bean.getId()%>"><button class="buttonAdd">Edit</button></a> </td>
 				
 			</tr>
 			 <% } %>
