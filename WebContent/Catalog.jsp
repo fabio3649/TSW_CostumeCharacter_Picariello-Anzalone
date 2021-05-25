@@ -11,7 +11,7 @@
 
 	<%
 	 	ProductModelDS daoProdotto= new ProductModelDS();
-		ArrayList<ProductBean> products =  daoProdotto.doRetrieveAll("type");
+		ArrayList<ProductBean> products =  daoProdotto.doRetrieveAll("name");
 	 	Iterator<?> it = products.iterator();
 	%>
 	<body>
@@ -47,7 +47,7 @@
 				<td><%=bean.getPrice()+"$"%></td>
 				<td><%=bean.getNumCopies() %></td>
 				<td style=width:80px><%=bean.getSize() %></td>
-				<td> <a href="editProduct?id=<%=bean.getId()%>"><button class="buttonAdd">Edit</button></a> </td>
+				<td> <a href="editProduct.jsp?id=<%=bean.getId()%>"><button class="buttonAdd">Edit</button></a> </td>
 				
 			</tr>
 			 <% } %>

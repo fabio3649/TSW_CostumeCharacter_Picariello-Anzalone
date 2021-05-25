@@ -14,8 +14,7 @@
 			  <a href="index.jsp" class="active">Home</a>
 			  <a href="Admin.jsp?id=1">Catalog view</a>
 			  <a href="Admin.jsp?id=2">Insert new product</a>
-			  <a href="Admin.jsp?id=3">Edit product </a>
-			  <a href="Admin.jsp?id=4">View product</a>
+			  <a href="Admin.jsp?id=3">View Users</a>
         </div>
 	
 	
@@ -33,12 +32,7 @@
 		<%} %>
 		<% if(request.getParameter("id").equals("3")){
 		%>	
-				<%@ include file="editProduct.jsp"%>
-			
-		<%} %>
-		<% if(request.getParameter("id").equals("4")){
-		%>	
-				<%@ include file="viewProduct.jsp"%>
+				
 			
 		<%} %>
 	<%} %>

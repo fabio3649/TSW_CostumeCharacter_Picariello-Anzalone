@@ -284,7 +284,7 @@ public class ProductModelDS  {
 		else {
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET PRICE = ? " + " WHERE IDPRODUCT = ? ";
+		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET IVA = ? " + " WHERE IDPRODUCT = ? ";
 
 		try {
 			connection = ds.getConnection();
@@ -423,7 +423,7 @@ public class ProductModelDS  {
 		else {
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET NAME = ? " + " WHERE IDPRODUCT = ? ";
+		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET AGE = ? " + " WHERE IDPRODUCT = ? ";
 
 		try {
 			connection = ds.getConnection();
@@ -488,7 +488,7 @@ public class ProductModelDS  {
 		else {
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET NAME = ? " + " WHERE IDPRODUCT = ? ";
+		String selectSQL = "UPDATE " + ProductModelDS.TABLE_NAME + " SET WEIGHT = ? " + " WHERE IDPRODUCT = ? ";
 
 		try {
 			connection = ds.getConnection();
