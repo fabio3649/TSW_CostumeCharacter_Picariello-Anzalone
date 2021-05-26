@@ -53,14 +53,13 @@ public class InsertProduct extends HttpServlet {
 			bean.setIva(Integer.parseInt(request.getParameter("iva")));
 			bean.setPrice(Double.parseDouble(request.getParameter("price")));
 			bean.setWeight(Double.parseDouble(request.getParameter("weight")));
-			bean.setCategory(request.getParameter("categoty"));
+			bean.setCategory(request.getParameter("category"));
 			System.out.println(bean);
 			dao.doSave(bean);
 		}
 		catch(Exception e) {
 			System.out.println(e);
 		}
-	}
-		
+	}	
 }
 

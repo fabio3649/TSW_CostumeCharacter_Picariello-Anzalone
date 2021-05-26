@@ -51,8 +51,8 @@ public class ProductModelDS  {
 		PreparedStatement preparedStatement = null;
 		ProductBean product = (ProductBean) bean;
 		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-				+ " (IDPRODUCT, NAME, TYPE, DESCRIPTION, AGE, SIZE, NUMBER OF COPIES,"
-				+ " IVA, PRICE, WEIGHT, URLIMAGE, CATEGORY) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (IDPRODUCT, NAME, TYPE, DESCRIPTION, AGE, SIZE, NUMBERCOPIES,"
+				+ " IVA, PRICE, WEIGHT, CATEGORY) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = ds.getConnection();

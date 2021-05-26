@@ -8,8 +8,8 @@
 </head>
 <body>
 	<%  ProductModelDS dao = new ProductModelDS(); 
-		ProductBean bean = new ProductBean();
-		bean.setId(11);
+		ProductBean bean = dao.doRetrieveByKey(1);
+		bean.setId(14);
 		dao.doSave(bean);
 	%>
 </body>
