@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class UserBean implements Serializable {
 
@@ -11,6 +12,7 @@ public class UserBean implements Serializable {
 	String name;
 	String surname;
 	String telephoneNumber;
+	Date birthDate;
 	String email;
 	String billingAddress;
 	int billingCAP;
@@ -24,6 +26,7 @@ public class UserBean implements Serializable {
 		name="";
 		surname="";
 		telephoneNumber="";
+		birthDate= null;
 		email="";
 		billingAddress="";
 		billingCAP=0;
@@ -31,6 +34,14 @@ public class UserBean implements Serializable {
 		billingProvince="";
 		
 		
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getUsername() {

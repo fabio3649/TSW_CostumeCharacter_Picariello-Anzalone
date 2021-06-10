@@ -1,56 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*,model.*,control.*" %>
-
+    
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Catalog</title>
-		<link rel="stylesheet" href="style.css" type="text/css">
-	</head>
+<head>
+<link rel="stylesheet" href="index.css" type="text/css">
+<meta charset="ISO-8859-1">
+<title>Catalog</title>
+</head>
+<body>
 
-	<%
-	 	ProductModelDS daoProdotto= new ProductModelDS();
-		ArrayList<ProductBean> products =  daoProdotto.doRetrieveAll("name");
-	 	Iterator<?> it = products.iterator();
+	<% ProductModelDS dao = new ProductModelDS(); 
+	   ImageModelDS daoImg = new ImageModelDS();
+	   ArrayList<ProductBean> bean = dao.doRetrieveAllByType("Costume");
+	   ArrayList<ProductBean> bean2 = dao.doRetrieveAllByType("Maschera");
+	   ImageBean urlImage = new ImageBean();
+	   
 	%>
-	<body>
-		<table>
-			<caption><h1>CATALOG</h1></caption>
-			<tr>
-				<th>Name</th>
-				<th>Availability</th>
-				<th>Price</th>
-				<th>Number of Copies</th>
-				<th>Size</th>
-				<th>Edit Product</th>
-			</tr>
-			<%  
-				while (it.hasNext()) {
-					ProductBean bean = (ProductBean) it.next();
-					String s = "ProductPage.jsp" + "?id="+bean.getId();
-					Cart cart = (Cart) request.getSession().getAttribute("cart");
-					boolean added = false;
-					if(cart!=null){
-						added = cart.productContain(bean.getId());
+<%@ include file="header.html" %>   
+
+	
+	<div class="container">
+	
+		<%
+		
+		
+		if ( Integer.parseInt(request.getParameter("type")) == 1) // se id = 1 allora mostra solo i costumi
+		%> <h1> COSTUMI </h1> <br> <br>
+		<%
+			{
+			ArrayList<ProductBean> temp = new ArrayList<ProductBean>();
+				for( int i=0;i<bean.size();i++)
+				{
+					ProductBean costume = bean.get(i);
+					String s = "ProductPage.jsp" + "?idProduct="+costume.getId();
+					urlImage = daoImg.doRetrieveMain(costume.getId());
+					if(costume.getName().equals(temp.get(i).getName()))
+					{
+						costume.setSize(costume.getSize().concat(" ").concat(temp.get(i).getSize()));
+												
 					}
-					
-			%>
-			<tr>
-				<td><a href=<%=s%>><%=bean.getName() %></a></td>
-				<%if(bean.getNumCopies()<=0){ %>
-					<td class="NotAvailable">Not Available</td>
-				
-				<%}else{ %>
-					<td class="Available">Available</td>
-				<% } %>
-				<td><%=bean.getPrice()+"$"%></td>
-				<td><%=bean.getNumCopies() %></td>
-				<td style=width:80px><%=bean.getSize() %></td>
-				<td> <a href="editProduct.jsp?id=<%=bean.getId()%>"><button class="buttonAdd">Edit</button></a> </td>
-				
-			</tr>
-			 <% } %>
-		</table>
-	</body>
+					else temp.add(costume);
+		%>
+		
+
+			
+          <div class="item">
+             <a href=<%=s%>> <%=temp.get(i).getName() %> <%= temp.get(i).getSize() %> <img src= "<%=urlImage.getUrl()%>"  alt="imgProduct" >    </a>  
+                
+          </div>
+		
+				<%
+				}
+				%>
+				</div>
+				<%
+			}
+				%>
+	
+
+ 
+
+	
+	
+	
+	
+
+	
+
+
+<%@ include file="footer.html"%>
+</body>
 </html>

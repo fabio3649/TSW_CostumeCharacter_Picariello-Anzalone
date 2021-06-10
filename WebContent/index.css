@@ -15,16 +15,24 @@
 section#spedizione {
     clear: both;
     position: relative;
-    height: 50%;
+    height: 38px;
     margin: 0;
     padding-bottom: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     line-height: 1;
     color: #fff;
     text-align: center;
     background: #455a64;
   }
+  
+  .vertical {
+  width: 1px;
+  height: 100%;
+  display: inline-block; 
+  margin: 0 auto;
+  margin-top: 5px;
+}
 
 section#spedizione img { height: 30px; weight: 30px; }
 
@@ -39,18 +47,60 @@ header{
 
 .logo , .menu , .user { min-width:  100px; }
 
-.logo { display: inline; color: white; }
-.logo a { text-decoration: none; display: block;  life-style-type: none; color: white; }
-.logo img { max-height: 150px; max-width: 250px; margin-left: 20px; margin-top: 20px; padding-top: 20px; padding-bottom: 20px;}
+.logo { float: right; display: inline; color: white; }
+.logo a { text-decoration: none; display: block;  list-style-type: none; color: white; }
+.logo img { max-height: 125px; max-width: 250px; margin-left: 20px; margin-top: 10px; padding-top: 20px; padding-bottom: 20px;}
+
+.wrapper {
+	width: 860 px;
+	margin: 0 auto;
+	padding: 5px;
+	background-color: #263238;
+	text-align: center;
+	transition: 1.2s ease;
+
+	
+}
+
+.wrapper ul {
+	list-style: none;
+	margin-top: 3%;
+	
+	
+}
 
 
-.menu ul { padding: 60px; list-style-type: none; }
-.menu ul li { display: inline-block; }
-.menu ul li a { padding: 20px; display: block; text-decoration: none; color: white; }
+.wrapper ul li {
+	
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	padding: 10px;
+	
+}
+
+
+
+.wrapper a { 
+	text-decoration: none;
+	color: white;
+	font-size: 25px;
+
+	
+}
+
+.wrapper ul li:hover {
+	transform : scale(1.5);
+	
+}
+
 
 .user a{ text-decoration: none;
   padding: 10px;
   display: block;
+  
 }
 
 .user ul { padding: 10px; life-style-type: none; }
@@ -112,12 +162,33 @@ header{
 }
 
 
+#tableForms{
+    position: relative;
+    bottom: 10px;
+	width:100px;
+	margin-right:10px;
+	border: 90px;
+}
 
+
+#buttonPos { float: right;   }
+ 
+.buttonADD {  cursor: pointer; color: white;  font-size: 17px; border:none; background-color: #546e7a; padding:10px; }
+
+.button {
+  background-color: #546e7a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 17px;
+  margin: 1px 2px;
+  cursor: pointer;
+}
 
 #footer {
 	
 	
-	position: absolute;
+	
 	bottom: 0;
 	left: 0;
     background-color: #455a64;

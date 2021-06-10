@@ -1,7 +1,10 @@
 package control;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,6 +73,24 @@ public class CheckRegister extends HttpServlet {
 			user.setPassword(request.getParameter("password1"));
 			user.setName(request.getParameter("name"));
 			user.setSurname(request.getParameter("surname"));
+		
+			
+			System.out.println(request.getParameter("birthdate"));
+			
+			
+			
+
+			String dateInString = request.getParameter("birthdate");
+			System.out.println(dateInString);
+			String [] list = dateInString.split("-");
+			 String year = list[0];
+			 String month = list[1];
+			 String day = list[2];
+			 Date dateOfBirth = new Date(Integer.parseInt(year)-1900, Integer.parseInt(month), Integer.parseInt(day));
+			 java.sql.Date sqlDate = new java.sql.Date(dateOfBirth.getTime());
+
+			System.out.println(sqlDate);
+			user.setBirthDate(sqlDate);
 			user.setTelephoneNumber(String.valueOf(request.getParameter("telephon")));
 			user.setEmail(request.getParameter("email"));
 			user.setBillingAddress(request.getParameter("address"));

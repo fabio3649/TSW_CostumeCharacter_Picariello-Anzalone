@@ -36,8 +36,8 @@ private static DataSource ds;
 		PreparedStatement preparedStatement = null;
 		UserBean user = (UserBean) bean;
 		String insertSQL = "INSERT INTO " + UserModelDS.TABLE_NAME
-				+ " (USERNAME, PASSWORD, NAME, SURNAME, TELEPHONENUMBER, EMAIL, BILLINGADDRESS, "
-				+ "  BILLINGCAP, BILLINGCITY, BILLINGPROVINCE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (USERNAME, PASSWORD, NAME, SURNAME, BIRTHDATE, TELEPHONENUMBER, EMAIL, BILLINGADDRESS, "
+				+ "  BILLINGCAP, BILLINGCITY, BILLINGPROVINCE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			connection = ds.getConnection();
@@ -46,12 +46,13 @@ private static DataSource ds;
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getName());
 			preparedStatement.setString(4, user.getSurname());
-			preparedStatement.setString(5, user.getTelephoneNumber());
-			preparedStatement.setString(6, user.getEmail());
-			preparedStatement.setString(7, user.getBillingAddress());
-			preparedStatement.setInt(8, user.getBillingCAP());
-			preparedStatement.setString(9, user.getBillingCity());
-			preparedStatement.setString(10, user.getBillingProvince());
+			preparedStatement.setDate(5, user.getBirthDate());
+			preparedStatement.setString(6, user.getTelephoneNumber());
+			preparedStatement.setString(7, user.getEmail());
+			preparedStatement.setString(8, user.getBillingAddress());
+			preparedStatement.setInt(9, user.getBillingCAP());
+			preparedStatement.setString(10, user.getBillingCity());
+			preparedStatement.setString(11, user.getBillingProvince());
 			preparedStatement.executeUpdate();
 			connection.setAutoCommit(false);
 			connection.commit();
@@ -122,6 +123,7 @@ private static DataSource ds;
 				bean.setPassword(rs.getString("PASSWORD"));
 				bean.setName(rs.getString("NAME"));
 				bean.setSurname(rs.getString("SURNAME"));
+				bean.setBirthDate(rs.getDate("BIRTHDATE"));
 			    bean.setTelephoneNumber(rs.getString("TELEPHONENUMBER"));
 	            bean.setEmail(rs.getString("EMAIL"));
 	            bean.setBillingAddress(rs.getString("BILLINGADDRESS"));
@@ -171,6 +173,7 @@ private static DataSource ds;
 				bean.setPassword(rs.getString("PASSWORD"));
 				bean.setName(rs.getString("NAME"));
 				bean.setSurname(rs.getString("SURNAME"));
+				bean.setBirthDate(rs.getDate("BIRTHDATE"));
 			    bean.setTelephoneNumber(rs.getString("TELEPHONENUMBER"));
 	            bean.setEmail(rs.getString("EMAIL"));
 	            bean.setBillingAddress(rs.getString("BILLINGADDRESS"));

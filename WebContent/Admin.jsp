@@ -22,7 +22,7 @@
 	<%if(request.getParameter("id")!=null){ %>
 		<% if(request.getParameter("id").equals("1")){
 		%>	
-				<%@ include file="Catalog.jsp"%>
+				<%@ include file="CatalogAdmin.jsp"%>
 			
 		<%} %>
 		<% if(request.getParameter("id").equals("2")){

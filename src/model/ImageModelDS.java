@@ -64,6 +64,51 @@ private static DataSource ds;
 	}
 	
 	
+	public synchronized ImageBean doRetrieveMain(int idProduct) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+	
+		ImageBean bean = new ImageBean();
+		String selectSQL = "SELECT * FROM " + ImageModelDS.TABLE_NAME + " WHERE MAIN = 1 AND PRODUCT = " + "?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, idProduct);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				
+				bean.setUrl(rs.getString("URL"));
+				bean.setProduct(rs.getInt("PRODUCT"));
+				
+				int main = rs.getInt("MAIN");
+				if(main == 0)
+					bean.setMain(false);
+				else
+					bean.setMain(true);
+					
+				
+				}
+			
+		     
+				
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
+
+	
 	
 	public synchronized ArrayList<ImageBean> doRetrieveAllByProduct(int id ) throws SQLException {
 		Connection connection = null;

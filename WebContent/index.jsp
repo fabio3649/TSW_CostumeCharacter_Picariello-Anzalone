@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,7 @@
 <body>
 
  <%@ include file="header.html" %>
-
+		 
 
 
       <div class="slider" >
@@ -36,7 +38,7 @@
         myIndex++;
         if (myIndex > x.length) {myIndex = 1}
         x[myIndex-1].style.display = "block";
-        setTimeout(carousel, 10000); // Change image every 2 seconds
+        setTimeout(carousel, 10000); // Change image every 10 seconds
       }
       </script>
 

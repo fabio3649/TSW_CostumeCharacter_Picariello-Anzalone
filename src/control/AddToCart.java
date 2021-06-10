@@ -16,21 +16,21 @@ public class AddToCart extends HttpServlet {
     public AddToCart() {
         super();
     }
-    //prova2 stiamo provando a committare entrambi
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id = (Integer.parseInt(request.getParameter("id")));
+		int idProduct = (Integer.parseInt(request.getParameter("idProduct")));
 		ProductModelDS ds = new ProductModelDS();
 		
 		try{
-			if(ds.doRetrieveByKey(id).getNumCopies()>0) {
+			if(ds.doRetrieveByKey(idProduct).getNumCopies()>0) {
 				if(request.getSession().getAttribute("cart")==null) {
 					Cart cart = new Cart();
-					cart.addProduct(ds.doRetrieveByKey(id));
+					cart.addProduct(ds.doRetrieveByKey(idProduct));
 					request.getSession().setAttribute("cart", cart);
 				} else {
 					Cart cart = (Cart)request.getSession().getAttribute("cart");
-					cart.addProduct(ds.doRetrieveByKey(id));
+					cart.addProduct(ds.doRetrieveByKey(idProduct));
 					request.getSession().setAttribute("cart", cart);
 				}
 				response.sendRedirect("Catalog.jsp");

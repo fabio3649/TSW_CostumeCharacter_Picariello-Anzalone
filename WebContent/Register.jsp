@@ -8,6 +8,9 @@
 <title>Register Page</title>
 </head>
 <body>
+<%@ include file="header.html" %>
+
+
 <table id="tableForms">
     	<tr class="buttonBorder">
         	<td class="buttonBorder">
@@ -35,12 +38,19 @@
         	</td>
     	</tr>
 	</table>
+	
+	<script> function focusRegister(x) {
+				x.style.background = "yellow";
+	}
+	</script>
+	
+	<div id="formRegister">
 	<form action="CheckRegister" method="post">
 	
 	
 		<fieldset>
-			<legend>Username e Password</legend>
-			<label>Username : </label><input type="text" name="username" autocomplete="off" maxlength="16" required>
+			<legend>Credenziali per l'accesso</legend>
+			<label>Username : </label><input type="text" name="username" autocomplete="off" maxlength="16" required onfocus="focusRegister(this)">
 				<%if(request.getSession().getAttribute("exUsername")==("true")){ %>
 					<p style=Color:red>Invalid Username, try another word</p>
 				<%
@@ -48,8 +58,8 @@
 				}else{ %>
 					<br><br>
 				<%} %>
-			<label>Password : </label><input type="password" name="password1" autocomplete="off" maxlength="16" required placeholder="MAX 16 CHARS"><br><br>
-			<label>Password : </label><input type="password" name="password2" autocomplete="off" maxlength="16" required placeholder="MAX 16 CHARS">
+			<label>Password : </label><input type="password" name="password1" onfocus="focusRegister(this)" autocomplete="off" maxlength="16" required placeholder="MAX 16 CHARS"><br><br>
+			<label>Password : </label><input type="password" name="password2" onfocus="focusRegister(this)" autocomplete="off" maxlength="16" required placeholder="MAX 16 CHARS">
 				<%if(request.getSession().getAttribute("incorrectPasswords")==("true")){ %>
 					<p style=Color:red>Passwords are different</p>
 				<%
@@ -62,23 +72,29 @@
 		
 		<fieldset>
 			<legend>Dati anagrafici</legend>
-			<label>Name : </label><input type="text" name="name"  maxlength="16" required><br><br>
-			<label>Surname : </label><input type="text" name="surname"  maxlength="16" required><br><br>
-			<label>N°telefono : </label><input type="number" name="telephon" maxlength="16"><br><br>
+			<label>Nome : </label><input type="text" name="name"  maxlength="16" required><br><br>
+			<label>Cognome : </label><input type="text" name="surname"  maxlength="16" required><br><br>
+			<label>Data di nascita : </label> <input type="date" name="birthdate" required><br><br> 
+			<label>N°telefono : </label><input type="tel" name="telephon" maxlength="10"><br><br>
 			<label>E-Mail : </label><input type="text" name="email"  required maxlength="25"><br><br>
 		</fieldset>
 		
 		
 		<fieldset>
-			<legend>Indirizzo</legend>
-			<label>Address : </label><input type="text" name="address"  maxlength="16" required><br><br>
-			<label>CAP : </label><input type="number" name="cap"  maxlength="16" required><br><br>
-			<label>City : </label><input type="text" name="city" maxlength="16" required><br><br>
-			<label>Province : </label><input type="text" name="province"  maxlength="2" required><br><br>
+			<legend></legend>
+			<label>Indirizzo : </label><input type="text" name="address"  maxlength="16" required><br><br>
+			<label>CAP : </label><input type="number" name="cap"  maxlength="10" required><br><br>
+			<label>Città : </label><input type="text" name="city" maxlength="16" required><br><br>
+			<label>Provincia : </label><input type="text" name="province"  maxlength="2" required><br><br>
 			<input type="submit" value="Register">
 		</fieldset> 
 		
 		
 	</form>
+	
+	</div>
+
+	
+	 <%@ include file="footer.html" %>
 </body>
 </html>

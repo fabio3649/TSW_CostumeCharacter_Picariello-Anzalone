@@ -7,43 +7,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="styleProductPage.css" type="text/css">
-
+ 
+ <link rel="stylesheet" href="index.css" type="text/css"  >
 
 <title> Page Product </title>
 </head>
 <body>
- <% int id =  Integer.parseInt(request.getParameter("id"));
+ <% int id =  Integer.parseInt(request.getParameter("idProduct"));
    ProductModelDS dao = new ProductModelDS();
    ProductBean bean = dao.doRetrieveByKey(id);
    ImageModelDS daoImg = new ImageModelDS();
-   ArrayList<ImageBean> imgIronMan = daoImg.doRetrieveAllByProduct(id);
-	   %>
+   ArrayList<ImageBean> images= daoImg.doRetrieveAllByProduct(id);
+  
+	%>
 	   
-   <div id="header">
-	    
-	    <img src="/CostumeCharacter/images/logo.png" alt="logo">
-	    
-	      <div id="buttonPos">
-		    <table align="right">
-				    <tr>
-				        <td>
-				            <form action="CartView.jsp" method="post">
-				                <input class="button" type="submit" value="Cart">
-				            </form>
-				        </td>
-				        <td>
-				            <form action="Catalog.jsp" method="post">
-				                <input class="button" type="submit" value="Catalog">
-				            </form>
-				        </td>
-				    </tr>
-	            </table>
-		    </div>
-	  	</div>
-	  		
+   <%@ include file="header.html" %>   		
 		
-	 <div id="container">
+	 <div class="container">
         
          
 	 	
@@ -51,19 +31,21 @@
 		<br><br><br><br><br><br>
 
 		<% 
-	  for(int i=0; i < imgIronMan.size() ;i++)
+	  for(int i=0; i < images.size() ;i++)
 	  {
 		  %>
-		  
-		 		<img src= "<%=imgIronMan.get(i).getUrl()%>"  alt="img" >
+		  		<div class="item">
+		 		<img src= "<%=images.get(i).getUrl()%>"  alt="img" >
+		 		</div>
 		 		<%
 	  }
 		  
 		  		%>
-		  %>
+		 
 		
           <table  class="table">
-               <tr> <td> <h1> <%=bean.getName() %> </h1> </td> <td > <a href="AddToCart?id=<%=bean.getId()%>"> <button class="buttonADD" >ADD TO CART </button> </a> </td> </tr>
+               <tr> <td> <h1> <%=bean.getName() %> </h1> </td> <td > <a href="AddToCart?idProduct=<%=bean.getId()%>">
+						 <button class="buttonADD" >ADD TO CART </button> </a> </td> </tr>
                <tr> <td> <h3> Details  </h3>  </td>  </tr>              	 
                <tr> <td> <p> <%=  bean.getDescription() %>  </p> </td> </tr>               	  
                <%if(!bean.getSize().equals("NULL")){ %>
@@ -74,5 +56,7 @@
                <tr>  <td> <p>  <%= bean.getPrice() %>$  </p> </td>  </tr>   			
 		</table>	
 	</div>
+	
+	<%@ include file="footer.html"%>
 </body>
 </html>
