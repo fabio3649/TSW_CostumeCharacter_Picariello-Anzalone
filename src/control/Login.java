@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(CheckLogin.ceckAdministartor(username, password)) {
+		if(CheckLogin.ceckAdministrator(username, password)) {
 			request.getSession().setAttribute("role", "Administrator");
 			response.sendRedirect("Admin.jsp");
 		}

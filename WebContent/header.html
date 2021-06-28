@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="index.css" type="text/css">
-<title>Insert title here</title>
-</head>
-<body>
-<section id="spedizione">
-       <img src="\CostumeCharacter\\images\spedizione.png" alt="spedizione">
-       <span> Spedizione gratuita per ordini superiori a <mark> 89.90 euro  </mark> </span> 
-			<hr class="vertical">
-       <span> Spedizione <mark> 10.00  euro </mark> in tutta Italia </span>
-  </section>
-    <header>
-      <div class="logo">
-        <a href="index.jsp" > <img src="\CostumeCharacter\\images\logo.png" alt="logo"  >  </a>
-
-      </div>
-          <div class="wrapper">
-              <ul>
-                  <li > <a  href="Catalog.jsp?type=1" > Costumi </a> </li>
-                 
-                  <li > <a href="Catalog.jsp?type=2"> Maschere </a> </li>
-                  <li > <a href="Catalog.jsp?type=3"> Accessori  </a> </li>
-                  
-                  <li > <a href="Catalog.jsp?type=4"> Per bambini </a> </li>
-              </ul>
-          </div>
-          <div class="user">
-            <ul>
-              <li> <a href="Login.jsp"> <img src="\CostumeCharacter\\images\user.png" alt="user"  > </a> </li>
-              <li> <a href="CartView.jsp"> <img src="\CostumeCharacter\\images\cart.png" alt="cart"  > </a> </li>
-            </ul>
-            <div class="badged">
-            <span> 0 </span>
-            
-            </div>
-          </div>
-
-      </header>
+	<head>
+		<meta charset="ISO-8859-1">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css" integrity="sha512-BiFZ6oflftBIwm6lYCQtQ5DIRQ6tm02svznor2GYQOfAlT3pnVJ10xCrU3XuXnUrWQ4EG8GKxntXnYEdKY0Ugg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+		<title>CostumeCharacter</title>
+	</head>
+	<body>
+	
+		<div class="header">
+			<div class="logo" >
+				<img alt="Logo" src="\CostumeCharacter\\images\logo.png">
+			</div>
+			<ul class="menu">
+				<li><a href="Costumi.jsp">Costumi</a></li>
+				<li><a href="Maschere.jsp">Maschere</a></li>
+				<li><a href="Accessori.jsp">Accessori</a></li>
+			</ul>
+			<div class="cta">
+				<a href="" class="button"> Contatti</a>
+			</div>	
+			<div class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		
+		
+		
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js" integrity="sha512-cA8gcgtYJ+JYqUe+j2JXl6J3jbamcMQfPe0JOmQGDescd+zqXwwgneDzniOd3k8PcO7EtTW6jA7L4Bhx03SXoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+		<script>
+			$( document ).ready(function() {
+				
+				$( ".hamburger").on('click', function(){
+					$(".menu").toggleClass("menu--open");
+				});
+				
+			});
+			
+			ScrollReveal().reveal('.reveal', { distance: '60px', duration: 1500,  easing: 'cubic-bezier(.215, .61, .355, 1)' , interval: 600 });
+			
+			
+		</script>
+      
 
 </body>
 </html>

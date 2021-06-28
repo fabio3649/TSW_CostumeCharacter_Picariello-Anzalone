@@ -271,6 +271,54 @@ public class ProductModelDS  {
 			}
 			return products;
 		}
+		
+		public synchronized ArrayList<ProductBean>  doRetrieveAllByName(String name) throws SQLException {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+
+			ArrayList<ProductBean> products = new ArrayList<ProductBean>();
+
+			String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE NAME = ?" + " ORDER BY NAME";
+
+			
+			
+
+			try {
+				connection = ds.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setString(1, name);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setId(rs.getInt("IDPRODUCT"));
+					bean.setName(rs.getString("NAME"));
+					bean.setType(rs.getString("TYPE"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setAge(rs.getString("AGE"));
+					bean.setSize(rs.getString("SIZE"));
+					bean.setNumCopies(rs.getInt("NUMBERCOPIES"));
+					bean.setIva(rs.getInt("IVA"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setTotalPrice(); // aggiunta prezzo ivato;
+					bean.setWeight(rs.getDouble("WEIGHT"));
+					bean.setCategory(rs.getString("CATEGORY"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+			return products;
+		}
 	
 	public synchronized boolean doDelete(int id) throws SQLException {
 		Connection connection = null;

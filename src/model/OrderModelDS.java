@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -91,6 +92,89 @@ private static DataSource ds;
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, idOrder);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setIdOrder(rs.getInt("IDORDER"));
+				bean.setPaymentMethod(rs.getString("PAYMENTMETHOD"));
+				bean.setDate(rs.getDate("DATE"));
+				bean.setStatus(rs.getString("STATUS"));
+				bean.setTotalPrice(rs.getDouble("TOTALPRICE"));
+				bean.setShippingCosts(rs.getDouble("SHIPPINGCOSTS"));
+				bean.setUser(rs.getString("USER"));
+				bean.setAddress(rs.getInt("ADDRESS"));
+				
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
+	
+	public synchronized OrderBean doRetrieveByName(String name, String surname) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		OrderBean bean = new OrderBean();
+
+		String selectSQL = "SELECT idOrder,paymenthMethod,date,totalPrice,shippingCosts,name,surname" + 
+							"FROM " + OrderModelDS.TABLE_NAME + "  COSTUMECHARACTER.USER " +
+								" WHERE name = ?" + " AND surname = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, surname);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setIdOrder(rs.getInt("IDORDER"));
+				bean.setPaymentMethod(rs.getString("PAYMENTMETHOD"));
+				bean.setDate(rs.getDate("DATE"));
+				bean.setStatus(rs.getString("STATUS"));
+				bean.setTotalPrice(rs.getDouble("TOTALPRICE"));
+				bean.setShippingCosts(rs.getDouble("SHIPPINGCOSTS"));
+				bean.setUser(rs.getString("USER"));
+				bean.setAddress(rs.getInt("ADDRESS"));
+				
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
+	
+	public synchronized OrderBean doRetrieveByDate(Date date1, Date date2) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		OrderBean bean = new OrderBean();
+
+		String selectSQL = "SELECT * FROM " + OrderModelDS.TABLE_NAME + " WHERE COSTUMECHARACTER.ORDER.DATE BETWEEN  = ?"
+								+ " AND = ? ";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setDate(1, date1);
+			preparedStatement.setDate(2, date2);
 
 			ResultSet rs = preparedStatement.executeQuery();
 

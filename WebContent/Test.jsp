@@ -10,8 +10,8 @@
 
   <%
   
-  AddressModelDS dao = new AddressModelDS();
-  AddressBean bean = dao.doRetrieveMinByUser("pippobaudo2");
+  OrderModelDS dao = new OrderModelDS();
+  OrderBean bean = dao.doRetrieveByName("fabio","picariello");
   
   
   

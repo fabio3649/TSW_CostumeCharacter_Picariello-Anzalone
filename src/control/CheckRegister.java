@@ -68,6 +68,7 @@ public class CheckRegister extends HttpServlet {
 		//salvataggio nel database
 		
 		else {
+			
 			UserBean user = new UserBean();
 			user.setUsername(request.getParameter("username"));
 			user.setPassword(request.getParameter("password1"));
@@ -124,8 +125,16 @@ public class CheckRegister extends HttpServlet {
 			catch(Exception e) {
 				System.out.println(e);
 			}
+			//setta validation a true se l'utente è validato
+			request.getSession().setAttribute("validation", "true");
 			
-			response.sendRedirect("Catalog.jsp");
+			//setta parametro dell'utente corrente tramite username
+			request.getSession().setAttribute("currentUser", username);
+			
+			//setta parametro dell'ruolo (role) con Admistrator || User
+			request.getSession().setAttribute("role", "User");
+			response.sendRedirect("index.jsp");
+			
 		}	
 	}
 }

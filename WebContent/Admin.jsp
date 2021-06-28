@@ -14,7 +14,7 @@
 			  <a href="index.jsp" class="active">Home</a>
 			  <a href="Admin.jsp?id=1">Catalog view</a>
 			  <a href="Admin.jsp?id=2">Insert new product</a>
-			  <a href="Admin.jsp?id=3">View Users</a>
+			  <a href="Admin.jsp?id=3">View Orders</a>
         </div>
 	
 	

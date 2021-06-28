@@ -23,7 +23,7 @@ public class CheckLogin {
 		return false;
 	}
 	
-	public static boolean ceckAdministartor(String username, String password) {
+	public static boolean ceckAdministrator(String username, String password) {
 		
 		if((username.equals("Domenico") && password.equals("8426")) || (username.equals("Fabio") && password.equals("8426")))
 			return true;

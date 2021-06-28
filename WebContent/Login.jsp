@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<link rel="stylesheet" href="index.css" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
 <title>Form</title>
 </head>
 <body>
@@ -43,6 +43,6 @@
 	
 	<p>Se non sei ancora registrato nel nostro sito clicca <a href="Register.jsp">qui</button></a></p>
 	
-	<%@ include file="footer.html" %>
+	
 </body>
 </html>
